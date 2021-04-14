@@ -9,42 +9,48 @@ def prime(n):
 N=int(input())
 A=set()
 B=set()
+AB=set()
 da=0
 gu=0
+
 for i in range(0,N):
     a,b=map(int,input().split())
     if prime(a):
-        if len(A.union(B))==0:
+        if len(AB)==0:
             A.add(a)
+            AB.add(a)
         else:
-            tmp=list(A.union(B))
-            if a in tmp == True:
+            if (a in AB) == True:
                 da-=1000
             else:
                 A.add(a)
+                AB.add(a)
     else:
         tmp=list(B)
         if len(tmp) < 3:
             gu+=1000
         else:
-            tmp=tmp.sort(reverse=True)
+            tmp=sorted(tmp,reverse=True)
             gu+=tmp[2]
     if prime(b):
-        if len(A.union(B))==0:
+        if len(AB)==0:
             B.add(b)
+            AB.add(b)
         else:
-            tmp=list(A.union(B))
-            if b in tmp ==True:
+            if (b in AB) ==True:
                 gu-=1000
             else:
                 B.add(b)
+                AB.add(b)
     else:
         tmp=list(A)
         if len(tmp) < 3:
             da+=1000
         else:
-            tmp=tmp.sort(reverse=True)
+            tmp=sorted(tmp,reverse=True)
             da+=tmp[2]
+    print('맞춘 소수:', A,B)
+    print('현재점수',da,gu)
 if da>gu:
     print('소수의 신 갓대웅')
 elif da<gu:
