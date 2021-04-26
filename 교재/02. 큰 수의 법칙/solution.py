@@ -1,0 +1,12 @@
+N,M,K=map(int,input().split())
+index=[]
+result=0
+count=0
+index=list(map(int,input().split())
+index.sort(reverse=True)
+index=[index[0],index[1]]
+count+=math.floor(M/(K+1))*K
+count+=M%(K+1)
+result+=int(index[0]*count)
+result+=int(index[1]*(M-count))
+print(result)
